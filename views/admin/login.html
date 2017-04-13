@@ -3,12 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="static/admin/css/admin.css">
+	<link rel="stylesheet" type="text/css" href="static/common/js/dist/vue.css">
 </head>
 <body>
-<div id="baby">
-	<{xh}>
+<div id="app">
+	<div id="login">
+		<form method="post" action="/admin/login">
+			<el-button icon="edit" @click="visible = true">按钮</el-button>
+		</form>
+	</div>
 </div>
 	
 </body>
-<script src="static/common/js/dist/xh.js"></script>
+<script src="static/common/js/dist/hm.js"></script>
 </html>
