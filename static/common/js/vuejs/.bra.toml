@@ -5,6 +5,7 @@ init_cmds = [
 watch_all = true					# Watch all sub-directories
 watch_dirs = [
 	"$WORKDIR/admin",
+	"$WORKDIR/admin/login",
 ]						# Directories to watch
 watch_exts = [".js",".css",".vue"]				# Extensions to watch
 ignore = [".git", "node_modules"] 	# Directories to exclude from watching

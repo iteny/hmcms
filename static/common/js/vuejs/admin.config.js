@@ -11,12 +11,12 @@ module.exports = {
     entry:{//定义入口文件
         page: [ROOT_PATH + "\\admin.js"],
         //打包第三方库作为公共包
-        // commons:['vue','vue-router']
+        common:['vue','vue-router','element-ui']
     },
     output:{//输出配置
         path: OUT_PATH,
         publicPath: '/',
-        filename: 'hm.js?t=[hash:5]',
+        filename: '[name].js?t=[hash:5]',
     },
     externals:[require('webpack-require-http')],
     resolve: {
@@ -95,6 +95,7 @@ module.exports = {
                 },
             }
         }),
+        new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js' }),
         new ExtractTextPlugin('vue.css?t=[hash:5]')//css分离
     ],
 }
