@@ -56,28 +56,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data() {
     return {
-      ruleForm: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      hmForm: {
+        username: '',
+        password: ''
       },
       rules: {
-        name: [{ required: true, message: '请输入活动名称', trigger: 'blur' }, { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }],
-        region: [{ required: true, message: '请选择活动区域', trigger: 'change' }],
-        date1: [{ type: 'date', required: true, message: '请选择日期', trigger: 'change' }],
-        date2: [{ type: 'date', required: true, message: '请选择时间', trigger: 'change' }],
-        type: [{ type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }],
-        resource: [{ required: true, message: '请选择活动资源', trigger: 'change' }],
-        desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }]
+        username: [{ required: true, message: '请输入活动名称', trigger: 'blur' }, { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入活动名称', trigger: 'blur' }, { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }]
+
       }
     };
   },
@@ -86,10 +84,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$refs[formName].validate(valid => {
         if (valid) {
           //发送get请求
-          this.$http.post('/admin', { username: this.ruleForm.name }).then(function (res) {
-            alert(res.body);
-          }, function () {
-            alert('请求失败处理'); //失败处理
+          // var item = {username:this.hmForm.username,password:this.hmForm.password};
+          // this.$http.post('/admin',item).then(function(res){
+          //     alert(res.body);    
+          // },function(){
+          //     alert('请求失败处理');   //失败处理
+          // });
+          $.ajax({
+            type: 'post',
+            url: '/admin',
+            data: { username: this.hmForm.username, password: this.hmForm.password },
+            dataType: "json",
+            beforeSend: function () {
+              // myload = layer.load(0,{time:3*1000});
+            }
           });
         } else {
           console.log('error submit!!');
@@ -10355,42 +10363,54 @@ module.exports = function normalizeComponent (
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('el-form', {
-    ref: "ruleForm",
+    ref: "hmForm",
     staticClass: "hm_loginForm",
     attrs: {
-      "model": _vm.ruleForm,
+      "model": _vm.hmForm,
       "rules": _vm.rules,
       "label-width": "100px"
     }
-  }, [_c('el-form-item', {
+  }, [_c('h3', {
+    staticClass: "title"
+  }, [_vm._v("后台登录")]), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "label": "活动名称",
-      "prop": "name"
+      "label": "用户名",
+      "prop": "username"
     }
   }, [_c('el-input', {
     model: {
-      value: (_vm.ruleForm.name),
+      value: (_vm.hmForm.username),
       callback: function($$v) {
-        _vm.ruleForm.name = $$v
+        _vm.hmForm.username = $$v
       },
-      expression: "ruleForm.name"
+      expression: "hmForm.username"
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "密码",
+      "prop": "password"
+    }
+  }, [_c('el-input', {
+    model: {
+      value: (_vm.hmForm.password),
+      callback: function($$v) {
+        _vm.hmForm.password = $$v
+      },
+      expression: "hmForm.password"
     }
   })], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
+    staticStyle: {
+      "width": "100%"
+    },
     attrs: {
       "type": "primary"
     },
     on: {
       "click": function($event) {
-        _vm.submitForm('ruleForm')
+        _vm.submitForm('hmForm')
       }
     }
-  }, [_vm._v("立即创建")]), _vm._v(" "), _c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.resetForm('ruleForm')
-      }
-    }
-  }, [_vm._v("重置")])], 1)], 1)
+  }, [_vm._v("立即创建")])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
