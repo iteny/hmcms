@@ -2,14 +2,14 @@ const path = require('path'),
     webpack = require('webpack'),
     NODE_ENV = process.env.NODE_ENV || "DEV",//环境类型
     NODE_RUN = process.env.NODE_RUN || "0",//是否运行
-    ROOT_PATH = path.resolve(__dirname) +"\\",
+    ROOT_PATH = path.resolve(__dirname,'../vuejs/admin.js'),
     OUT_PATH = path.resolve(__dirname, '../dist'),
     SERVER_PATH =  process.env.SERVER || "./build/",//服务路径
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry:{//定义入口文件
-        page: [ROOT_PATH + "\\admin.js"],
+        page: [ROOT_PATH],
         //打包第三方库作为公共包
         common:['vue','vue-router','element-ui']
     },
