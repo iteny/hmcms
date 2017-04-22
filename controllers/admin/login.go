@@ -2,10 +2,8 @@ package admin
 
 import (
 	"github.com/astaxie/beego"
-	// "github.com/astaxie/beego/orm"
-	"database/sql"
 	"github.com/astaxie/beego/validation"
-	_ "github.com/mattn/go-sqlite3"
+	"hmcms/models/sqlite"
 	"log"
 )
 
@@ -23,11 +21,11 @@ func (c *LoginController) GetLogin() {
 	c.TplName = "admin/login.html"
 }
 func (c *LoginController) PostLogin() {
-	username := c.GetString("username")
+	var username string = c.GetString("username")
 	password := c.GetString("password")
 	valid := validation.Validation{}
 	valid.Required(username, "请输入用户名")
-	valid.MinSize(username, 6, "用户名最少6位")
+	valid.MinSize(username, 5, "用户名最少5位")
 	valid.MaxSize(username, 15, "用户名最多15位")
 	valid.Required(password, "请输入密码")
 	valid.MinSize(password, 8, "密码最少8位")
@@ -44,25 +42,26 @@ func (c *LoginController) PostLogin() {
 			c.ServeJSON()
 		}
 	} else {
-		db, err := sql.Open("sqlite3", "./sql/hmcms.db")
+
+		has, err := sqlite.LoginUser(username, password)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
+		} else {
+			if has == true {
+				c.Data["json"] = map[string]interface{}{"status": 4, "info": "ok"}
+				c.ServeJSON()
+			} else {
+				c.Data["json"] = map[string]interface{}{"status": 4, "info": "no"}
+				c.ServeJSON()
+			}
 		}
-		defer db.Close()
-		rows, err := db.Query("select * from user")
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer rows.Close()
-		var users []Users = make([]Users, 0)
-		for rows.Next() {
-			var u Users
-			rows.Scan(&u.username, &u.password)
-			users = append(users, u)
-		}
-		log.Println(users)
-		c.Data["json"] = map[string]interface{}{"status": 4, "info": "ok"}
-		c.ServeJSON()
+
+		// a, err := sqlite.GetAccount(1)
+		// if err != nil {
+		// 	log.Println(err)
+		// } else {
+		// 	log.Fatalf("%#v\n", a)
+		// }
 
 	}
 	// log.Println(username, password, 111)
