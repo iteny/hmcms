@@ -106,7 +106,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               if (msg.status === 4) {
                 e.fullscreenLoading = false;
                 e.$message.error(msg.info);
-              } else {}
+              } else if (msg.status === 1) {
+                e.fullscreenLoading = false;
+                e.$message.success(msg.info);
+                setTimeout(function () {
+                  window.location.href = "/admin/index";
+                }, 3000);
+              }
               // if(msg.status === 1){
               //     admin.success(msg.info,'#loginsubmit');
               //     setTimeout(function(){window.location.href=redirect}, 3000);
@@ -10412,6 +10418,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "prop": "password"
     }
   }, [_c('el-input', {
+    attrs: {
+      "type": "password"
+    },
     model: {
       value: (_vm.hmForm.password),
       callback: function($$v) {
@@ -10434,6 +10443,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "100%"
     },
     attrs: {
+      "id": "loginsubmit",
       "type": "primary"
     },
     on: {

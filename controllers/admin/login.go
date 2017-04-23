@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 	"hmcms/models/sqlite"
-	"log"
+	// "log"
 )
 
 type LoginController struct {
@@ -30,29 +30,31 @@ func (c *LoginController) PostLogin() {
 	valid.Required(password, "请输入密码")
 	valid.MinSize(password, 8, "密码最少8位")
 	valid.MaxSize(password, 15, "密码最多15位")
-	// // valid.Range(u.Age, 0, 18, "age")
 
 	if valid.HasErrors() {
 		// 如果有错误信息，证明验证没通过
 		// 打印错误信息
 		for _, err := range valid.Errors {
-			// log.Println(err.Key, err.Message)
-			// log.Println(username, password)
 			c.Data["json"] = map[string]interface{}{"status": 4, "info": err.Key}
 			c.ServeJSON()
+			return
 		}
 	} else {
 
 		has, err := sqlite.LoginUser(username, password)
 		if err != nil {
-			log.Fatalln(err)
+			c.Data["json"] = map[string]interface{}{"status": 4, "info": "发生未知错误！"}
+			c.ServeJSON()
+			return
 		} else {
 			if has == true {
-				c.Data["json"] = map[string]interface{}{"status": 4, "info": "ok"}
+				c.Data["json"] = map[string]interface{}{"status": 1, "info": "登录成功！"}
 				c.ServeJSON()
+				return
 			} else {
-				c.Data["json"] = map[string]interface{}{"status": 4, "info": "no"}
+				c.Data["json"] = map[string]interface{}{"status": 4, "info": "用户名或密码错误！"}
 				c.ServeJSON()
+				return
 			}
 		}
 

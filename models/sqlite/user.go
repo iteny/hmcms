@@ -1,6 +1,7 @@
 package sqlite
 
 import (
+	"hmcms/models"
 	"time"
 )
 
@@ -25,6 +26,7 @@ func NewUser(username string, password string, nickname string, email string, re
 }
 func LoginUser(username string, password string) (bool, error) {
 	user := &User{}
+	password = models.Sha1([]byte(models.Md5([]byte(password))))
 	has, err := x.Where("username = ? AND password = ?", username, password).Get(user)
 	return has, err
 }

@@ -16,11 +16,11 @@
       <el-input v-model="hmForm.username"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
-      <el-input v-model="hmForm.password"></el-input>
+      <el-input type="password" v-model="hmForm.password"></el-input>
     </el-form-item>
     
     <el-form-item>
-      <el-button type="primary" @click="submitForm('hmForm')" style="width:100%;" v-loading.fullscreen.lock="fullscreenLoading">立即创建</el-button>
+      <el-button id="loginsubmit" type="primary" @click="submitForm('hmForm')" style="width:100%;" v-loading.fullscreen.lock="fullscreenLoading">立即创建</el-button>
       <!-- <el-button @click="resetForm('hmForm')">重置</el-button> -->
     </el-form-item>
   </el-form>
@@ -73,8 +73,10 @@
                   if(msg.status===4){
                     e.fullscreenLoading = false;
                     e.$message.error(msg.info);
-                  }else{
-
+                  }else if(msg.status===1){
+                    e.fullscreenLoading = false;
+                    e.$message.success(msg.info);
+                    setTimeout(function(){window.location.href="/admin/index"}, 3000);
                   }
                     // if(msg.status === 1){
                     //     admin.success(msg.info,'#loginsubmit');
@@ -104,4 +106,5 @@
       }
     }
   }
+  
 </script>
