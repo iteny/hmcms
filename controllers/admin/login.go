@@ -41,7 +41,7 @@ func (c *LoginController) PostLogin() {
 		}
 	} else {
 
-		has, err := sqlite.LoginUser(username, password)
+		has, err := sqlite.UserSql.LoginUser(username, password)
 		if err != nil {
 			c.Data["json"] = map[string]interface{}{"status": 4, "info": "发生未知错误！"}
 			c.ServeJSON()

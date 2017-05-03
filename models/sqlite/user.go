@@ -5,6 +5,14 @@ import (
 	"time"
 )
 
+var (
+	UserSql *User
+)
+
+func init() {
+	UserSql = NewUser()
+}
+
 type User struct {
 	Id            int       `json:"id" xorm:"not null unique pk autoincr INT(11)"`
 	Username      string    `json:"username" xorm:"not null unique default '' index CHAR(30)"`
@@ -19,14 +27,11 @@ type User struct {
 	Status        int       `json:"status" xorm:"not null default 0 index TINYINT(1)"`
 }
 
-func NewUser(username string, password string, nickname string, email string, remake string, status int) error {
-	// 对未存在记录进行插入
-	_, err := x.Insert(&User{Username: username, Password: password, Nickname: nickname, Email: email, Remake: remake, Status: status})
-	return err
+func NewUser() *User {
+	return &User{}
 }
-func LoginUser(username string, password string) (bool, error) {
-	user := &User{}
+func (u *User) LoginUser(username string, password string) (bool, error) {
 	password = models.Sha1([]byte(models.Md5([]byte(password))))
-	has, err := x.Where("username = ? AND password = ?", username, password).Get(user)
+	has, err := x.Where("username = ? AND password = ?", username, password).Get(u)
 	return has, err
 }
