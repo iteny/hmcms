@@ -6,11 +6,11 @@ import (
 )
 
 var (
-	UserSql *User
+	UserDb *User
 )
 
 func init() {
-	UserSql = NewUser()
+	UserDb = NewUser()
 }
 
 type User struct {
@@ -30,8 +30,8 @@ type User struct {
 func NewUser() *User {
 	return &User{}
 }
-func (u *User) LoginUser(username string, password string) (bool, error) {
+func (u *User) LoginUser(username string, password string) (*User, error) {
 	password = models.Sha1([]byte(models.Md5([]byte(password))))
-	has, err := x.Where("username = ? AND password = ?", username, password).Get(u)
-	return has, err
+	_, err := x.Cols("id", "username", "status").Where("username = ? AND password = ?", username, password).Get(u)
+	return u, err
 }

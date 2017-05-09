@@ -28,7 +28,7 @@ func init() {
 	}
 
 	// 同步结构体与数据表
-	if err = x.Sync(new(User)); err != nil {
+	if err = x.Sync(new(User), new(LoginLog)); err != nil {
 		log.Fatalf("Fail to sync database: %v\n", err)
 	}
 }
