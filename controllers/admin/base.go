@@ -9,7 +9,7 @@ type BaseController struct {
 }
 
 func (c *BaseController) VerifyLogin() {
-	userId := c.GetSession("userId")
+	userId := c.GetSession("userid")
 	if userId == nil {
 		c.Redirect("/admin", 302)
 	}

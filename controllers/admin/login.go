@@ -3,19 +3,21 @@ package admin
 import (
 	// "github.com/astaxie/beego"
 
-	"fmt"
+	"hmcms/models"
 	"hmcms/models/sqlite"
+	"log"
+	"time"
+
+	"github.com/astaxie/beego/cache"
 
 	"github.com/astaxie/beego/validation"
-	"github.com/yinheli/qqwry"
 )
 
 type LoginController struct {
 	BaseController
 }
 type Users struct {
-	username int
-	password string
+	cnt int
 }
 
 func (c *LoginController) GetLogin() {
@@ -45,36 +47,36 @@ func (c *LoginController) PostLogin() {
 	} else {
 
 		row, err := sqlite.UserDb.LoginUser(username, password)
+		// fmt.Println(row)
 		if err != nil {
 			c.Data["json"] = map[string]interface{}{"status": 4, "info": "发生未知错误！"}
 			c.ServeJSON()
 			return
 		} else {
-			if row != nil {
-				if row.Status == 0 {
+			s, err := cache.NewCache("file", `{"CachePath":"./cache","FileSuffix":".cache","DirectoryLevel":2,"EmbedExpiry":120}`)
+			if err != nil {
+				log.Println(s)
+			}
+			errorstatus := s.Get("error_" + username)
 
+			log.Println(errorstatus)
+			if errorstatus != nil {
+				c.Data["json"] = map[string]interface{}{"status": 4, "info": "帐号密码输入错误3次，请在10分钟以后在登录！"}
+				c.ServeJSON()
+				return
+			}
+			if row.Id != 0 {
+				ip := c.Ctx.Input.IP()
+				ipinfo := models.TaobaoIP(ip)
+				if row.Status == 0 {
 					c.Data["json"] = map[string]interface{}{"status": 4, "info": "帐号已被禁用！"}
 					c.ServeJSON()
 					return
 				} else if row.Status == 1 {
-
-					ip := "180.165.111.135"
-					// resp, err := http.Get(fmt.Sprintf("http://ip.taobao.com/service/getIpInfo.php?ip=%s", ip))
-					// if err != nil {
-					// 	fmt.Println("获取失败")
-					// }
-					// defer resp.Body.Close()
-					// fmt.Println(resp)
-					file := "./ipdata/UTFWry.dat"
-					q := qqwry.NewQQwry(file)
-					q.Find(ip)
-					fmt.Printf("ip:%v, Country:%v, City:%v", q.Ip, q.Country, q.City)
-					ss := c.Ctx.Input.IP()
-					fmt.Println(ss)
+					sqlite.LoginLogDb.RecordLogin(row.Username, ip, 1, "登录成功", ipinfo.Data.Area, ipinfo.Data.Country, c.Ctx.Input.UserAgent())
 					c.SetSession("userid", row.Id)
 					c.SetSession("username", row.Username)
 					c.SetSession("status", row.Status)
-
 					c.Data["json"] = map[string]interface{}{"status": 1, "info": "登录成功！"}
 					c.ServeJSON()
 					return
@@ -85,22 +87,19 @@ func (c *LoginController) PostLogin() {
 				}
 
 			} else {
+				var status int
+				if Users.cnt > 3 {
+					status = 1
+				}
+				Users.cnt++
+
+				s.Put("error_"+username, status, 10*time.Second)
 				c.Data["json"] = map[string]interface{}{"status": 4, "info": "用户名或密码错误！"}
 				c.ServeJSON()
 				return
 			}
 		}
 
-		// a, err := sqlite.GetAccount(1)
-		// if err != nil {
-		// 	log.Println(err)
-		// } else {
-		// 	log.Fatalf("%#v\n", a)
-		// }
-
 	}
-	// log.Println(username, password, 111)
-	// // c.AllowCross() //允许跨域
-	// c.Data["json"] = map[string]interface{}{"status": 200, "message": "ok", "moreinfo": ""}
-	// c.ServeJSON()
+
 }

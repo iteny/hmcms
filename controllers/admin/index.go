@@ -5,5 +5,7 @@ type IndexController struct {
 }
 
 func (c *IndexController) Index() {
-	c.TplName = "/admin/index.html"
+	c.VerifyLogin()
+	c.Data["username"] = c.GetSession("username")
+	c.TplName = "admin/index.html"
 }

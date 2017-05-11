@@ -3,6 +3,7 @@ package sqlite
 import (
 	"errors"
 	"log"
+	"time"
 
 	"github.com/go-xorm/xorm"
 	_ "github.com/mattn/go-sqlite3"
@@ -26,7 +27,8 @@ func init() {
 	if err != nil {
 		log.Fatalf("Fail to create engine: %v\n", err)
 	}
-
+	location, _ := time.LoadLocation("Asia/Shanghai")
+	x.TZLocation = location
 	// 同步结构体与数据表
 	if err = x.Sync(new(User), new(LoginLog)); err != nil {
 		log.Fatalf("Fail to sync database: %v\n", err)
