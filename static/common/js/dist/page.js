@@ -24,7 +24,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_resource_dist_vue_resource___default.a);
 new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
+
   el: '#app',
+  delimiters: ['<{', '}>'],
   components: {
     'hm-login': __WEBPACK_IMPORTED_MODULE_4__admin_login_login_vue___default.a
   }
@@ -64,14 +66,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    captchaid: {
+      type: String,
+      default: 'text'
+    },
+    imgurl: {
+      type: String,
+      default: 'text'
+    }
+  },
   data() {
     return {
       fullscreenLoading: false,
       hmForm: {
         username: '',
-        password: ''
+        password: '',
+        captcha: '',
+        captcha_id: ''
       },
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }, { min: 5, max: 15, message: '长度在 5 到 15 个字符', trigger: 'blur' }],
@@ -90,14 +108,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           //发送get请求
           // var item = {username:this.hmForm.username,password:this.hmForm.password};
           // this.$http.post('/admin',item).then(function(res){
-          //     alert(res.body);    
+          //     alert(res.body);
           // },function(){
           //     alert('请求失败处理');   //失败处理
           // });
           $.ajax({
             type: 'post',
             url: '/admin',
-            data: { username: this.hmForm.username, password: this.hmForm.password },
+            data: { username: this.hmForm.username, password: this.hmForm.password, captcha: this.hmForm.captcha, captcha_id: this.captchaid },
             dataType: "json",
             beforeSend: function () {
               e.fullscreenLoading = true;
@@ -123,7 +141,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               //     // refreshs();
               //     $('.yanzheng_img').eq(0).click();
               //     $('#verify').val('')
-              // }                    
+              // }
             }
           });
         } else {
@@ -10427,6 +10445,55 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.hmForm.password = $$v
       },
       expression: "hmForm.password"
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    staticStyle: {
+      "position": "relative"
+    },
+    attrs: {
+      "label": "验证码",
+      "prop": "captcha"
+    }
+  }, [_c('p', [_c('img', {
+    staticStyle: {
+      "position": "absolute",
+      "top": "2px",
+      "right": "2px",
+      "z-index": "999"
+    },
+    attrs: {
+      "src": _vm.imgurl
+    }
+  })]), _vm._v(" "), _c('el-input', {
+    attrs: {
+      "type": "text",
+      "maxlength": 15
+    },
+    model: {
+      value: (_vm.hmForm.captcha),
+      callback: function($$v) {
+        _vm.hmForm.captcha = $$v
+      },
+      expression: "hmForm.captcha"
+    }
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.hmForm.captcha_id),
+      expression: "hmForm.captcha_id"
+    }],
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": (_vm.hmForm.captcha_id)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.hmForm.captcha_id = $event.target.value
+      }
     }
   })], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
     directives: [{

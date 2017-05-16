@@ -7,10 +7,12 @@ import login from './admin/login/login.vue'
 Vue.use(ElementUI)
 Vue.use(VueAjax)
 new Vue({
+
   el: '#app',
-  components: { 
+  delimiters:['<{', '}>'],
+  components: {
     'hm-login':login,
-    // 'hm-echarts':echarts 
+    // 'hm-echarts':echarts
   },
   // render: h => h(login)
 })

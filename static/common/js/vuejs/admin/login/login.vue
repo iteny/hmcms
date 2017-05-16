@@ -1,6 +1,6 @@
 <style>
 .hm_loginForm .el-form-item.is-required .el-form-item__label:before{
-    content: '';    
+    content: '';
     margin-right: 0px;
 }
 .hm_loginForm .title {
@@ -18,7 +18,11 @@
     <el-form-item label="密码" prop="password">
       <el-input type="password" v-model="hmForm.password"></el-input>
     </el-form-item>
-    
+    <el-form-item label="验证码" prop="captcha"  style="position: relative;">
+        <p><img :src="imgurl" style="position: absolute;top:2px;right: 2px;z-index:999;" /></p>
+        <el-input v-model="hmForm.captcha" type="text" :maxlength="15"></el-input>
+        <input v-model="hmForm.captcha_id" type="hidden" />
+    </el-form-item>
     <el-form-item>
       <el-button id="loginsubmit" type="primary" @click="submitForm('hmForm')" style="width:100%;" v-loading.fullscreen.lock="fullscreenLoading">立即创建</el-button>
       <!-- <el-button @click="resetForm('hmForm')">重置</el-button> -->
@@ -27,12 +31,24 @@
 </template>
 <script>
   export default {
+    props:{
+        captchaid:{
+            type: String,
+            default: 'text'
+        },
+        imgurl:{
+            type: String,
+            default: 'text'
+        }
+    },
     data() {
       return {
         fullscreenLoading: false,
         hmForm: {
           username: '',
           password: '',
+          captcha:'',
+          captcha_id:'',
         },
         rules: {
           username: [
@@ -43,28 +59,28 @@
             { required: true, message: '请输入密码', trigger: 'blur' },
             { min: 8, max: 15, message: '长度在 8 到 15 个字符', trigger: 'blur' }
           ],
-          
+
         }
       };
     },
     methods: {
 
       submitForm(formName) {
-        
+
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var e = this;
             //发送get请求
             // var item = {username:this.hmForm.username,password:this.hmForm.password};
             // this.$http.post('/admin',item).then(function(res){
-            //     alert(res.body);    
+            //     alert(res.body);
             // },function(){
             //     alert('请求失败处理');   //失败处理
             // });
              $.ajax({
                 type: 'post',
                 url: '/admin',
-                data : {username:this.hmForm.username,password:this.hmForm.password},
+                data : {username:this.hmForm.username,password:this.hmForm.password,captcha:this.hmForm.captcha,captcha_id:this.captchaid},
                 dataType:"json",
                 beforeSend: function(){
                     e.fullscreenLoading = true;
@@ -88,7 +104,7 @@
                     //     // refreshs();
                     //     $('.yanzheng_img').eq(0).click();
                     //     $('#verify').val('')
-                    // }                    
+                    // }
                 },
                 // error: function(XMLHttpRequest, textStatus, errorThrown){
                 //     admin.error('网络连接异常！','#loginsubmit');
@@ -106,5 +122,5 @@
       }
     }
   }
-  
+
 </script>

@@ -3,17 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="static/common/js/dist/vue.css">
 	<link rel="stylesheet" type="text/css" href="static/admin/css/admin.css">
 </head>
 <body onkeydown="keyLogin();">
 <div id="app">
 	<div id="login">
-		<hm-login></hm-login>
+		<hm-login captchaid="{{.CaptchaId}}" imgurl="/captcha/{{.CaptchaId}}.png"></hm-login>
 	</div>
 </div>
-	
+
 </body>
 <script src="static/common/js/dist/jquery-1.12.3.min.js"></script>
 <script src="static/common/js/dist/common.js"></script>
