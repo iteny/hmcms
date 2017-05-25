@@ -1,10 +1,11 @@
 package main
 
 import (
+	_ "hmcms/routers"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/mattn/go-sqlite3"
-	_ "hmcms/routers"
 )
 
 func init() {

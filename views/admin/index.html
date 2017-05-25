@@ -1,9 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" style="height:100%;">
 <head>
+	<meta charset="UTF-8">
 	<title>后台首页</title>
+	<link rel="stylesheet" type="text/css" href="/static/common/js/dist/vue.css">
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/admin.css">
 </head>
-<body>
-{{.username}}sdfsf
+<body style="height:100%;">
+<div id="app">
+	<!-- 头部 -->
+	<div id="hmHead">
+		<ul>
+			<li><a href="">按钮</a></li>
+			<li><a href="">按钮</a></li>
+			<li><a href="">按钮</a></li>
+		</ul>
+	</div>
+	<div id="hmLeft" style="overflow-x:auto;overflow-y:auto;">
+		<div id="menu">
+            <div class="click active"><a href=""></a><i class="iconfont" style="color:#34c84a;font-size: 18px;">&#xe606;</i></div>
+            <div id="left-menu">
+                <div data-collapse>
+                    <h2 style="position: relative;" class="open west active" title="Listen!"><i class="tou iconfont" style="color:white;font-size: 18px;">&#xe604</i><em>管理首页</em><i class="iconfont" style="color:#FC635D;font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>
+                    <ul>
+                        <li><a class="west" href="/admin/asdf/index" target="rightFrame" title="系统设置" data-name="系统设置"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>系统设置</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>11111</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>11111</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理</em></a></li>
+						<li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="show.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>首页幻灯广告</em></a></li>
+                        <li><a href="page.php"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>单页面管理1111</em></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
 </body>
+<script src="/static/common/js/dist/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+var hg = window.innerHeight  - 40;
+$('#hmLeft').height(hg);
+$('#left-menu').on("click",'h2.open',function(event){
+	if($(this).hasClass("active")){
+		$(this).removeClass("active");
+		$(this).find('i.tou').html('&#xe603;');
+		$(this).next('ul').hide();
+		$(this).next('ul').animate({opacity:0},'slow');
+	}else{
+		$(this).addClass("active");
+		$(this).find('i.tou').html('&#xe604;');
+		$(this).next('ul').show();
+		$(this).next('ul').animate({opacity:1},'slow');
+	}
+});
+$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;');
+$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;');
+if($('h2').attr('aria-expanded') == 'true'){
+	$('i.tou').html('&#xe604;');
+}
+if($('h2').attr('aria-expanded') == 'false'){
+	$('i.tou').html('&#xe603;');
+}
+$('#hmLeft div.click').click(function(){
+	if($(this).hasClass("active")){
+		$(this).removeClass("active");
+		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;')
+		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:50px;')
+		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 51px');
+
+	}else{
+		$(this).addClass("active");
+		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;')
+		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:180px;')
+		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 181px');
+	}
+});
+$('#left-menu').on("mouseover mouseout",'a.west',function(event){
+	if(event.type == "mouseover"){
+		if($('div.click').attr('class') == 'click')
+		{
+			$(['<div class="iteny" style="position: absolute;left: 50px;top:'+$(this).offset().top+'px">',
+				'<div class="jiantou"></div>',
+				'<div class="content">'+$(this).attr("data-name")+'</div>','</div>'].join('')).appendTo(document.body);
+		}
+	}else if(event.type == "mouseout"){
+		$('.iteny').remove();
+	}
+});
+$('#left-menu').on("mouseover mouseout",'h2.west',function(event){
+	if(event.type == "mouseover"){
+		if($('div.click').attr('class') == 'click')
+		{
+			$(['<div class="iteny" style="position: absolute;left: 50px;top:'+$(this).offset().top+'px">',
+				'<div class="jiantou"></div>',
+				'<div class="content">'+$(this).attr("data-name")+'</div>','</div>'].join('')).appendTo(document.body);
+		}
+	}else if(event.type == "mouseout"){
+		$('.iteny').remove();
+	}
+});
+</script>
 </html>
