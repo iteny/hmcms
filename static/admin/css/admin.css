@@ -124,7 +124,8 @@ font-size:16px;font-style:normal;
     width: 100%;
 }
 #menu li a:hover{
-    background: #37424f;
+	color: white;
+    background: #3AC17E;
 }
 #menu h2  {
     height: 38px;
@@ -147,6 +148,41 @@ font-size:16px;font-style:normal;
     display: block;
     height: 38px;
     line-height: 38px;
+}
+#hmRight{
+    margin-left: 181px;
+    z-index: 9999;
+}
+.options_refresh{
+	position: absolute;
+    /*width: 54px;*/
+    height: 20px;
+    right: 37px;
+    top: 48px;
+    background:#FC635D;
+    border: 1px solid #ccc;
+	border-radius: 50%;
+}
+.options{
+    position: absolute;
+    /*width: 54px;*/
+    height: 20px;
+    right: 10px;
+    top: 48px;
+    background:#34C749;
+    border: 1px solid #ccc;
+	border-radius: 50%;
+}
+.options a,.options_refresh a {
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    /*padding:6px;*/
+    width: 20px;
+    text-indent: 4px;
+    /*text-indent: -2000em;*/
+
 }
 .iteny{
     color:white;

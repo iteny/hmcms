@@ -30,7 +30,7 @@ func init() {
 	location, _ := time.LoadLocation("Asia/Shanghai")
 	x.TZLocation = location
 	// 同步结构体与数据表
-	if err = x.Sync(new(User), new(LoginLog)); err != nil {
+	if err = x.Sync(new(User), new(LoginLog), new(AuthRule)); err != nil {
 		log.Fatalf("Fail to sync database: %v\n", err)
 	}
 }
