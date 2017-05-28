@@ -10,18 +10,21 @@
 <div id="app">
 	<!-- 头部 -->
 	<div id="hmHead">
-		<ul>
-			<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
+		<ul id="access" class="children-tooltip">
+			{{range .menu}}
+			<li><a class="top-nav" data-id="{{.Id}}" href="javascript:void(0);" title="{{.Title}}">{{.Title}}</a></li>
+			{{end}}
+
 			<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
 			<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
 		</ul>
 	</div>
 	<div id="hmLeft" style="overflow-x:auto;overflow-y:auto;">
 		<div id="menu">
-            <div class="click active"><a href=""></a><i class="iconfont" style="color:#34c84a;font-size: 18px;">&#xe606;</i></div>
+            <div class="click active"><i class="iconfont" style="color:#34c84a;font-size: 18px;">&#xe606;</i></div>
             <div id="left-menu">
                 <div data-collapse>
-                    <h2 style="position: relative;" class="open west active" title="Listen!"><i class="tou iconfont" style="color:white;font-size: 18px;">&#xe604</i><em>管理首页</em><i class="iconfont" style="color:#FC635D;font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>
+                    <h2 style="position: relative;" class="open west active" title="Listen!"><i class="tou iconfont" style="font-size: 18px;">&#xe604</i><em>管理首页</em><i class="htwo iconfont" style="font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>
                     <ul>
                         <li><a class="west" href="/admin/asdf/index" target="rightFrame" title="系统设置" data-name="系统设置"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>系统设置</em></a></li>
 						<li><a class="west" href="/admin/asdf/index" target="rightFrame" title="系统设置" data-name="系统设置"><i class="iconfont" style="color:white;font-size: 16px;">&#xe600;</i><em>系统设置</em></a></li>
@@ -140,7 +143,7 @@ $('#J_fullScreen').click(function (e) {
 		$('.options').attr('style','top:48px;');
 	}
 });
-var getLeftMenu = '/intendant/index/getLeftMenu';
+var getLeftMenu = '/admin/getLeftMenu';
 //获取左侧菜单
 $(".top-nav").click(function(e) {
 	if($(this).parent('li').attr("class") == "action"){
@@ -158,7 +161,7 @@ $(".top-nav").click(function(e) {
 		},
 		success: function(data){
 			if(data == false){
-				$('#left-menu').html('<h2 style="position: relative;" class="open west" title="菜单加载中...!"><i class="tou iconfont" style="color:#FFD700;font-size: 16px;">&#xe60b;</i><em style="color:#FFD700;">此分类无菜单...!</em></h2>');
+				$('#left-menu').html('<h2 style="position: relative;" class="open west active" title="菜单加载中...!"><i class="tou iconfont" style="color:#FFD700;font-size: 16px;">&#xe60b;</i><em style="color:#FFD700;">此分类无菜单...!</em></h2>');
 				return false;
 			}
 			$('#left-menu').html('');
@@ -166,15 +169,17 @@ $(".top-nav").click(function(e) {
 			var count = data.length;
 			for(var i=0; i<count; i++)
 			{
-				str += '<h2 style="position: relative;" class="open west active" data-name="'+data[i]['text']+'"><i class="tou iconfont" style="color:white;font-size: 18px;">&#xe604;</i><em style="color:white;">'+data[i]['text']+'</em><i class="iconfont" style="color:white;font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>';
+				str += '<div data-collapse>';
+				str += '<h2 style="position: relative;" class="open west active" data-name="'+data[i]['title']+'"><i class="tou iconfont" style="font-size: 18px;">&#xe604;</i><em>'+data[i]['title']+'</em><i class="htwo iconfont" style="font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>';
 				str += '<ul>';
 				var icount = data[i]['children'].length;
 				for(var s=0; s<icount; s++)
 				{
-					var thdizhi = '/intendant/'+data[i]['children'][s]['url'];
-					str += '<li><a class="west" href="'+thdizhi+'" target="rightFrame" data-name="'+data[i]['children'][s]['text']+'"><i class="iconfont" style="color:white;font-size: 16px;">'+data[i]['children'][s]['icon']+'</i><em>'+data[i]['children'][s]['text']+'</em></a></li>';
+					var thdizhi = '/admin/'+data[i]['children'][s]['url'];
+					str += '<li><a class="west" href="'+thdizhi+'" target="rightFrame" data-name="'+data[i]['children'][s]['title']+'"><i class="iconfont" style="color:white;font-size: 16px;">'+data[i]['children'][s]['icon']+'</i><em>'+data[i]['children'][s]['title']+'</em></a></li>';
 				}
 				str += '</ul>';
+				str += '</div>';
 			}
 			$('#left-menu').html(str);
 		},
@@ -183,6 +188,6 @@ $(".top-nav").click(function(e) {
 		}
 	});
 });
-$('.top-nav').eq(0).click();
+// $('.top-nav').eq(0).click();
 </script>
 </html>
