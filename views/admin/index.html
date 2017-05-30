@@ -10,14 +10,32 @@
 <div id="app">
 	<!-- 头部 -->
 	<div id="hmHead">
-		<ul id="access" class="children-tooltip">
-			{{range .menu}}
-			<li><a class="top-nav" data-id="{{.Id}}" href="javascript:void(0);" title="{{.Title}}">{{.Title}}</a></li>
-			{{end}}
+		<div class="logo">
+            <a href="/admin/index" title="管理中心" class="logo"><img src="/static/admin/img/hmcms.png" style="width:600px; height:40px;display:inline-block;"></a>
+        </div>
+		<div id="nav_left">
+			<ul id="access" class="children-tooltip">
+				{{range .menu}}
+				<li><a class="top-nav" data-id="{{.Id}}" href="javascript:void(0);" title="{{.Name}}">{{.Name}}</a></li>
+				{{end}}
 
-			<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
-			<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
-		</ul>
+				<!-- <li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li>
+				<li><a class="top-nav" data-id="{$topnav.id}" href="javascript:void(0);" title="{$topnav.title}">按钮</a></li> -->
+			</ul>
+		</div>
+		<div id="nav_right" onmouseover="this.className='item hover'" onmouseout="this.className='item'">
+            <div class="image">
+            <img width="24" height="24" src="/static/admin/img/admin.jpg" />
+            </div>
+            <div class="uu">admin</div>
+            <div class="cc">
+                <ul>
+                    <li><a href="" target="rightFrame">个人资料</a></li>
+                    <li><a href="/Intendant/Index/userPass">修改密码</a></li>
+                    <li><a href="/Intendant/Index/loginOut">退出</a></li>
+                </ul>
+            </div>
+        </div>
 	</div>
 	<div id="hmLeft" style="overflow-x:auto;overflow-y:auto;">
 		<div id="menu">
@@ -54,7 +72,7 @@
 		<div class="options">
             <a href="" id="J_fullScreen" class="bsn full_screen active" title="最大化/最小化"><i class="iconfont" style="color:white;font-size: 13px;">&#xe609;</i></a>
         </div>
-        <iframe name="rightFrame" id="iframe_default" src="/admin/sd" style="height: 100%; width: 100%;display:block;" data-id="default" frameborder="0" scrolling="auto"></iframe>
+        <iframe name="rightFrame" id="iframe_default" src="/admin/index/home" style="height: 100%; width: 100%;display:block;" data-id="default" frameborder="0" scrolling="auto"></iframe>
     </div>
 </div>
 </body>
@@ -89,11 +107,13 @@ $('#hmLeft div.click').click(function(){
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;overflow-x:auto;overflow-y:auto;')
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:50px;overflow-x:auto;overflow-y:auto;')
 		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 51px');
+		$('#menu li').attr('style','text-indent: 18px;')
 	}else{
 		$(this).addClass("active");
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;overflow-x:auto;overflow-y:auto;')
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:180px;overflow-x:auto;overflow-y:auto;')
 		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 181px');
+		$('#menu li').attr('style','text-indent: 25px;')
 	}
 });
 $('#left-menu').on("mouseover mouseout",'a.west',function(event){
@@ -170,13 +190,16 @@ $(".top-nav").click(function(e) {
 			for(var i=0; i<count; i++)
 			{
 				str += '<div data-collapse>';
-				str += '<h2 style="position: relative;" class="open west active" data-name="'+data[i]['title']+'"><i class="tou iconfont" style="font-size: 18px;">&#xe604;</i><em>'+data[i]['title']+'</em><i class="htwo iconfont" style="font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>';
+				str += '<h2 style="position: relative;" class="open west active" data-name="'+data[i]['name']+'"><i class="tou iconfont" style="font-size: 18px;">&#xe604;</i><em>'+data[i]['name']+'</em><i class="htwo iconfont" style="font-size: 12px;position: relative;right: -55px;">&#xe605;</i></h2>';
 				str += '<ul>';
 				var icount = data[i]['children'].length;
 				for(var s=0; s<icount; s++)
 				{
+					if(data[i]['children'][s]['icon'] == 0){
+						var icon = "&#xe60a";
+					}
 					var thdizhi = '/admin/'+data[i]['children'][s]['url'];
-					str += '<li><a class="west" href="'+thdizhi+'" target="rightFrame" data-name="'+data[i]['children'][s]['title']+'"><i class="iconfont" style="color:white;font-size: 16px;">'+data[i]['children'][s]['icon']+'</i><em>'+data[i]['children'][s]['title']+'</em></a></li>';
+					str += '<li><a class="west" href="'+thdizhi+'" target="rightFrame" data-name="'+data[i]['children'][s]['name']+'"><i class="iconfont" style="color:white;font-size: 14px;">'+icon+'</i><em>'+data[i]['children'][s]['name']+'</em></a></li>';
 				}
 				str += '</ul>';
 				str += '</div>';
@@ -188,6 +211,10 @@ $(".top-nav").click(function(e) {
 		}
 	});
 });
-// $('.top-nav').eq(0).click();
+$('.top-nav').eq(0).click();
+$('#left-menu').on("click",'li',function(event){
+	$('#left-menu li').removeClass('action');
+	$(this).addClass('action');
+});
 </script>
 </html>
