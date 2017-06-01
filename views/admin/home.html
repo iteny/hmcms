@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台首页</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/js/dist/vue.css">
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/content.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/frame.css">
+</head>
+<body>
+<div id="frame_top">
+    当前位置&nbsp;<i class="iconfont">&#xe60e;</i>&nbsp;&nbsp;后台首页
+</div>
+<div id="frame_content">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+        <tbody>
+            <tr>
+                <td width="49%" border="0" cellspacing="0" cellpadding="0" class="home">
+                    <div class="frame-table-list">
+                        <table width="100%">
+                            <thead>
+                            <div class="title">用户信息</div>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td width="120" align="right">您好&nbsp;：</td>
+                                <td>{$username}</td>
+                            </tr>
+                            <tr>
+                                <td width="120" align="right">所属角色&nbsp;：</td>
+                                <td>{$groupname}</td>
+                            </tr>
+                            <!--{% for key,val in loginlog if key < 1 %}-->
+                            <tr>
+                                <td width="120" align="right">项目开发者&nbsp;：</td>
+                                <td>河马叔叔[<a style="color: #4169E1">8192332@qq.com</a>]</td>
+                            </tr>
+                            <tr>
+                                <td width="120" align="right">github地址&nbsp;：</td>
+                                <td>https://github.com/iteny</td>
+                            </tr>
+                            <tr>
+                                <td width="120" align="right">二次开发手册&nbsp;：</td>
+                                <td><a style="color: #4169E1" href="">http://www.hemacms.com/docs</a></td>
+                            </tr>
+                            <!--{% endfor %}-->
+                            <tr>
+                                <td width="120" align="right">产品名称&nbsp;：</td>
+                                <td>河马CMS[<a style="color: #4169E1" href="#">访问官网</a>]</td>
+                            </tr>
+                            <tr>
+                                <td width="120" align="right">用户类型&nbsp;：</td>
+                                <td>开源使用</td>
+                            </tr>
+                            <tr>
+                                <td width="120" align="right">产品版本&nbsp;：</td>
+                                <td>0.1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td width="49%" border="0" cellspacing="0" cellpadding="0">
+                    <div class="frame-table-list">
+                        <table width="100%">
+                            <thead>
+                            <div class="title">系统信息</div>
+                            </thead>
+                            <tbody>
+                                <volist name="systeminfo" id="vo" key="k">
+                                <php> if($k%2==1) echo "<tr>";</php>
+                                <td width="170" align="right">{$key}：</td>
+                                <td>{$vo}</td>
+                                <php> if($k%2==0) echo "</tr>";</php>
+                                </volist>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+<script src="/static/common/js/dist/jquery-1.12.3.min.js"></script>
+</html>

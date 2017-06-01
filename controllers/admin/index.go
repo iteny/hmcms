@@ -10,6 +10,7 @@ type IndexController struct {
 	BaseController
 }
 
+//主页面
 func (c *IndexController) Index() {
 	rows, _ := sqlite.AuthRuleDb.GetOneMenu()
 	fmt.Println(rows, 111)
@@ -17,6 +18,11 @@ func (c *IndexController) Index() {
 	// c.VerifyLogin()
 	c.Data["username"] = c.GetSession("username")
 	c.TplName = "admin/index.html"
+}
+
+//主页面home页面
+func (c *IndexController) Home() {
+	c.TplName = "admin/home.html"
 }
 
 //获取左侧菜单

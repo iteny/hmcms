@@ -177,11 +177,12 @@ $(".top-nav").click(function(e) {
 		data: 'pid='+$(this).attr("data-id"),
 		dataType: 'json',
 		beforeSend: function(){
-			$('#left-menu').html('<h2 style="position: relative;" class="open west" title="菜单加载中...!"><i class="tou iconfont" style="color:#FFD700;font-size: 16px;">&#xe60b;</i><em style="color:#FFD700;">菜单加载中...!</em></h2>');
+			$('#left-menu').html('<h2 style="position: relative;" class="open west" title="菜单加载中...!"><i class="tou iconfont" style="color:red;font-size: 16px;">&#xe60b;</i><em style="color:red;">菜单加载中...!</em></h2>');
 		},
 		success: function(data){
-			if(data == false){
-				$('#left-menu').html('<h2 style="position: relative;" class="open west active" title="菜单加载中...!"><i class="tou iconfont" style="color:#FFD700;font-size: 16px;">&#xe60b;</i><em style="color:#FFD700;">此分类无菜单...!</em></h2>');
+			// alert(data);
+			if(data == null){
+				$('#left-menu').html('<h2 style="position: relative;" class="open west active" title="菜单加载中...!"><i class="tou iconfont" style="color:red;font-size: 16px;">&#xe60b;</i><em style="color:red;">此分类无菜单...!</em></h2>');
 				return false;
 			}
 			$('#left-menu').html('');

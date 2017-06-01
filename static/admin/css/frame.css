@@ -1,0 +1,200 @@
+#frame_content{
+    /*padding:15px 15px 70px 15px;
+    margin-top: 92px;*/
+}
+.input, textarea, select {
+    padding: 4px 4px;
+    font-size: 100%;
+    line-height: 18px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #f0f0f0 inset;
+    /* border-radius: 1px; */
+    vertical-align: middle;
+    margin: 0;
+    font-family: inherit;
+}
+/*
+===================
+输入框文本框长度
+===================
+*/
+.length_0{
+    width:20px;
+}
+.length_1{
+    width:50px;
+}
+.length_2{
+    width:110px;
+}
+.length_3{
+    width:170px;
+}
+.length_4{
+    width:230px;
+}
+.length_5{
+    width:290px;
+}
+.length_6{
+    width:350px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+tr {
+
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+tr {
+    /*border-left: 1px solid #e5e3e3;*/
+}
+td {
+    /*border-right: 1px solid #e5e3e3;*/
+    margin: 0;
+    padding: 0;
+    display: table-cell;
+    vertical-align: inherit;
+}
+td, th, div {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.frame-table-list td {
+    padding: 7px 10px 9px;
+    color: #666;
+    font-size: 12px;
+}
+.frame-table-list td {
+    background: #fafafa url(../img/hr.png) 0 bottom repeat-x;
+}
+.frame-table-list{
+    /*border-top: 1px solid #ebebeb;*/
+    /*margin-bottom: 10px;*/
+    background: #ddd;
+    /*border: 1px solid #25333c;*/
+    border-radius: 2px;
+    padding: 1px;
+    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);*/
+    margin-bottom: 15px;
+}
+.frame-table-list thead tr td {
+    padding: 10px 9px;
+    background:#d6dadf;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ffffff;
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+.frame-table-list tbody input{
+    height: 21px;
+    padding: 4px 8px;
+    font-size: 100%;
+    line-height: 18px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #f0f0f0 inset;
+    /* border-radius: 1px; */
+    vertical-align: middle;
+    margin: 0;
+    font-family: inherit;
+}
+.frame-table-list tbody input.chk-none{
+    box-shadow: none;
+}
+.input:focus,textarea:focus{
+    outline:2px solid #99d8f5;
+    border-color:#7bbff2;
+    background-color:#fffbde;
+}
+.frame-table-list a{
+    color: white;
+    font-weight: bold;
+}
+.frame-table-list a:hover{
+    /*text-decoration: underline;*/
+}
+.frame-table-list a.blue{
+    height: 32px;
+    line-height: 32px;
+    padding: 4px 8px;
+    background: #09c;
+    border: 1px solid #09c;
+    border-radius: 2px;
+}
+.frame-table-list a.blue:hover{
+    background: #337ab7;
+    border-color: #2e6da4;
+}
+.frame-table-list a.red{
+    height: 32px;
+    line-height: 32px;
+    padding: 4px 8px;
+    background: #d9534f;
+    border: 1px solid #d43f3a;
+    border-radius: 2px;
+}
+.frame-table-list a.red:hover{
+    background: #c9302c;
+    border-color: #ac2925;
+}
+.frame-table-list span.green{
+    color:green;
+}
+.frame-table-list span.red{
+    color:red;
+}
+.frame-table-list tbody tr:hover td
+{
+    color:white;
+    /*background-color:#f9f9f9;*/
+    background: #3AC17E;
+}
+.frame-table-list tbody tr:hover td a{
+    color: white;
+}
+.frame-table-list tbody tr:hover td span{
+    color: white;
+}
+.frame-table-list tbody tr:hover .icon{
+    color:white;
+}
+.frame-table-list div.title{
+    height: 36px;
+    line-height: 36px;
+    background-color: #f8f8f8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
+    background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: linear-gradient(top, #f8f8f8, #f2f2f2);
+    /*border-top: 1px solid #ccc;*/
+    border-bottom:1px solid #ccc;
+    width: 100%;
+    text-indent: 10px;
+    color:#707070;
+}
+.frame-table-list .table-tree{
+    background: #fafafa;
+    margin-bottom: 0;
+    padding: 10px;
+}
+.frame-table-list .search-content{
+    background: #fafafa;
+    padding: 5px 5px 5px 10px;
+    font-size: 14px;
+    font-weight:bold;
+    color:#666;
+}
+.frame-table-list .search-content input{
+    padding: 6px 4px;
+}
+.frame-table-list label{float: left;display: block;margin-right: 10px;}
+/*td.home{padding-right: 10px;}*/
