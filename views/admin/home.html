@@ -26,12 +26,12 @@
                             <tbody>
                             <tr>
                                 <td width="120" align="right">您好&nbsp;：</td>
-                                <td>{$username}</td>
+                                <td>{{.username}}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td width="120" align="right">所属角色&nbsp;：</td>
                                 <td>{$groupname}</td>
-                            </tr>
+                            </tr> -->
                             <!--{% for key,val in loginlog if key < 1 %}-->
                             <tr>
                                 <td width="120" align="right">项目开发者&nbsp;：</td>
@@ -72,14 +72,18 @@
                             <div class="title">系统信息</div>
                             </thead>
                             <tbody>
-                                <volist name="systeminfo" id="vo" key="k">
-                                <php> if($k%2==1) echo "<tr>";</php>
-                                <td width="170" align="right">{$key}：</td>
-                                <td>{$vo}</td>
-                                <php> if($k%2==0) echo "</tr>";</php>
-                                </volist>
-
-
+                                <tr>
+                                {{range $k, $v := .info}}
+                                <td width="80" align="right">{{$k}}：</td>
+                                <td width="200">{{$v}}</td>
+                                {{end}}
+                                </tr>
+                                <tr>
+                                {{range $k, $v := .infoone}}
+                                <td width="80" align="right">{{$k}}：</td>
+                                <td width="200">{{$v}}</td>
+                                {{end}}
+                                </tr>
                             </tbody>
                         </table>
                     </div>

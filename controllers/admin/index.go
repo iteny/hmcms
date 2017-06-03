@@ -3,6 +3,8 @@ package admin
 import (
 	"fmt"
 	"hmcms/models/sqlite"
+	"os"
+	"runtime"
 	"strconv"
 )
 
@@ -22,6 +24,18 @@ func (c *IndexController) Index() {
 
 //主页面home页面
 func (c *IndexController) Home() {
+	hostname, _ := os.Hostname()
+	info := map[string]interface{}{
+		"操作系统": runtime.GOOS,
+		"主机名":  hostname,
+	}
+	infoone := map[string]interface{}{
+		"IP": c.Ctx.Input.IP(),
+		"端口": c.Ctx.Input.Port(),
+	}
+	c.Data["info"] = info
+	c.Data["infoone"] = infoone
+	c.Data["username"] = c.GetSession("username")
 	c.TplName = "admin/home.html"
 }
 
@@ -50,4 +64,14 @@ func (c *IndexController) GetLeftMenu() {
 	c.Data["json"] = rows
 	c.ServeJSON()
 	return
+}
+func quyu(x int) bool {
+	a := x % 2
+	if a == 1 {
+		return true
+	} else if a == 0 {
+		return false
+	} else {
+		return true
+	}
 }
