@@ -56,7 +56,7 @@ font-size:16px;font-style:normal;
 	box-shadow: inset 0px 1px 1px #fff;
 }
 #hmHead .logo{
-    width: 110px;
+    width: 102px;
     height:40px;
     float:left;
     /*border-right: 1px solid #008fbf;*/
@@ -76,7 +76,7 @@ list-style-type: none;
 }
 #access li{
     float:left;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
     padding: 0;
 }
 #access li a{
@@ -107,9 +107,15 @@ list-style-type: none;
     height: 100%;
 	display: block;
 	/*border-top: 1px solid #ddd;*/
-    background: #E0E0E0;
-	box-shadow: inset 0px 1px 1px #fff;
-    border-right: 1px solid #ddd;
+	background-color: #E0E0E0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#E0E0E0), to(#f2f2f2));
+    background: -webkit-linear-gradient(top, #E0E0E0, #f2f2f2);
+    background: -moz-linear-gradient(top, #E0E0E0, #f2f2f2);
+    background: -ms-linear-gradient(top, #E0E0E0, #f2f2f2);
+    background: -o-linear-gradient(top, #E0E0E0, #f2f2f2);
+    background: linear-gradient(top, #E0E0E0, #f2f2f2);
+	/*box-shadow: inset 0px 0px 1px #fff;*/
+    /*border-right: 1px solid #ddd;*/
 }
 
 #hmLeft .click{
@@ -117,8 +123,8 @@ list-style-type: none;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
-	box-shadow: inset 0px 0px 1px 0px #fff;
-	border-bottom: 1px solid #ddd;
+	/*box-shadow: inset 0px 0px 1px 0px #fff;*/
+	/*border-bottom: 1px solid #ddd;*/
 }
 #menu{
     font-size: 14px;

@@ -16,4 +16,5 @@ func init() {
 	beego.Router("/admin/index/home", &admin.IndexController{}, "get:Home")
 	beego.Router("/admin/getLeftMenu", &admin.IndexController{}, "post:GetLeftMenu")
 	beego.Handler("/captcha/*.png", captcha.Server(150, 36)) //注册验证码服务，验证码图片的宽高为240 x 80
+	beego.Router("/admin/site/menu", &admin.SiteController{}, "get:Menu")
 }

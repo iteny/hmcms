@@ -33,3 +33,21 @@ func (a *AuthRule) GetTwoMenu(pid int) (ar []*AuthRule, err error) {
 	err = x.Asc("sort").Cols("id,url,name,icon").Where("pid= ? AND isshow= ?", pid, 1).Find(&ar)
 	return ar, err
 }
+
+//获取所有菜单
+func (a *AuthRule) GetAllMenu() (ar []AuthRule, err error) {
+	err = x.Asc("sort").Find(&ar)
+	return ar, err
+}
+
+//递归重新排序无限极分类
+func RecursiveMenu(arr []AuthRule, pid int, level int) (ar []AuthRule) {
+
+	for k, v := range arr {
+		if pid == v.Id {
+			rm := RecursiveMenu(arr, v.Id, level+1)
+			ar[k].Children = append(ar[k].Children, rm)
+		}
+	}
+	return ar
+}
