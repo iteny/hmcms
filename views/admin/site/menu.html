@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/static/common/js/dist/vue.css">
 	<link rel="stylesheet" type="text/css" href="/static/admin/css/content.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/frame.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/screen.css" media="screen" > -->
+    <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.theme.default.css"> -->
 </head>
 <body>
 <div id="frame_top">
@@ -23,39 +26,14 @@
 </div>
 <div id="frame_content">
 <form name="commonSort" class="ajax-form" action="/intendant/Site/sortMenu" method="post">
-    <div class="frame_table_list">
-        <table width="100%">
-            <colgroup>
-                <col width="40">
-                <col width="40">
-                <col width="140">
-                <col width="160">
-                <col width="80">
-
-                <col width="160">
-            </colgroup>
-            <thead>
-            <tr>
-                <td align="center">排序</td>
-                <td align="center">ID</td>
-                <td align="left">菜单名称</td>
-                <td align="center">控制器/方法</td>
-                <td align="center">是否显示</td>
-                <td align="center">管理操作</td>
+    <div class="frame_table_list" style="margin-top:150px;">
+        <table id="example-advanced">
+            {{range .json}}
+            <tr data-tt-id="{{.Id}}" {{if eq .Pid 0}}{{else}}data-tt-parent-id="{{.Pid}}"{{end}}>
+                <td><i class="iconfont" style="color:#666;font-size: 14px;">&#xe600;</i>&nbsp;&nbsp;{{.Name}}</td>
+                <td>{{.Url}}</td>
             </tr>
-            </thead>
-            <tbody>
-                <volist name="menu" id="menu">
-                <tr>
-                    <td align="center"><input style="text-align: center" name="sort[{$menu['id']}]" type="text" size="3" value="{$menu['sort']}" class="input"></td>
-                    <td align="center">{$menu['id']}</td>
-                    <td><span class="tree-icon tree-file icons-calendar-calculator_edit"></span><!-- <i class="org-2">1</i> --></td>
-                    <td align="center">{$menu['name']}</td>
-                    <td align="center"><if condition='$menu["isshow"] eq 1'><i class="iconfont" style="color:green;font-size: 16px;">&#xe60c;</i><else /><i class="iconfont" style="color:red;font-size: 16px;">&#xe60a;</i></if></td>
-                    <td align="center"><a class="ajax-add blue" href="/Intendant/Site/addEditMenu/?pid={$menu['id']}" data-level="{$menu['level']}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe610;</i>&nbsp;&nbsp;添加子菜单</a>&nbsp;&nbsp;&nbsp;<a class="ajax-edit blue" href="/Intendant/Site/addEditMenu/?id={$menu['id']}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe615;</i>&nbsp;&nbsp;修改</a>&nbsp;&nbsp;&nbsp;<a class="ajax-del red" data-title="{$menu['title']}" data-type="菜单" href="/Intendant/Site/delMenu" data-id="{$menu['id']}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe614;</i>&nbsp;&nbsp;删除</a> </td>
-                </tr>
-                </volist>
-            </tbody>
+            {{end}}
         </table>
     </div>
     <div class="frame_table_btn">
@@ -64,4 +42,48 @@
 </form>
 </div>
 </body>
+<!-- <script src="/static/common/js/treetable/jquery.js"></script> -->
+<!-- <script src="/static/common/js/treetable/jquery.ui.core.js"></script>
+<script src="/static/common/js/treetable/jquery.ui.widget.js"></script>
+<script src="/static/common/js/treetable/jquery.ui.mouse.js"></script>
+<script src="/static/common/js/treetable/jquery.ui.draggable.js"></script>
+<script src="/static/common/js/treetable/jquery.ui.droppable.js"></script> -->
+<script src="/static/common/js/dist/jquery-1.12.3.min.js"></script>
+<script src="/static/common/js/treetable/jquery.treetable.js"></script>
+<script>
+$("#example-advanced").treetable({ expandable: true });
+
+// // Highlight selected row
+// $("#example-advanced tbody").on("mousedown", "tr", function() {
+//   $(".selected").not(this).removeClass("selected");
+//   $(this).toggleClass("selected");
+// });
+//
+// // Drag & Drop Example Code
+// $("#example-advanced .file, #example-advanced .folder").draggable({
+//   helper: "clone",
+//   opacity: .75,
+//   refreshPositions: true,
+//   revert: "invalid",
+//   revertDuration: 300,
+//   scroll: true
+// });
+//
+// $("#example-advanced .folder").each(function() {
+//   $(this).parents("#example-advanced tr").droppable({
+//     accept: ".file, .folder",
+//     drop: function(e, ui) {
+//       var droppedEl = ui.draggable.parents("tr");
+//       $("#example-advanced").treetable("move", droppedEl.data("ttId"), $(this).data("ttId"));
+//     },
+//     hoverClass: "accept",
+//     over: function(e, ui) {
+//       var droppedEl = ui.draggable.parents("tr");
+//       if(this != droppedEl[0] && !$(this).is(".expanded")) {
+//         $("#example-advanced").treetable("expandNode", $(this).data("ttId"));
+//       }
+//     }
+//   });
+// });
+</script>
 </html>

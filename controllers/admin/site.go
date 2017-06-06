@@ -11,6 +11,9 @@ type SiteController struct {
 
 func (c *SiteController) Menu() {
 	rows, _ := sqlite.AuthRuleDb.GetAllMenu()
-	fmt.Println(rows)
+	ar := sqlite.RecursiveMenu(rows, 0, 0)
+	// fmt.Println(rows)
+	fmt.Println(ar)
+	c.Data["json"] = ar
 	c.TplName = "admin/site/menu.html"
 }
