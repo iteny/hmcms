@@ -69,9 +69,7 @@ td, th, div {
     font-size: 12px;
     border-bottom: 1px solid #F8F8F8;
 }
-.frame_table_list td {
-    /*background: #fafafa url(../img/hr.png) 0 bottom repeat-x;*/
-}
+
 .frame_table_list{
     /*border-top: 1px solid #ebebeb;*/
     /*margin-bottom: 10px;*/
@@ -287,4 +285,40 @@ button.btn{
 button.btn:hover{
     background: #337ab7;
     border-color: #2e6da4;
+}
+
+table.treetable thead tr th {
+    height: 36px;
+    line-height: 36px;
+    background-color: #f8f8f8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
+    background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+    background: linear-gradient(top, #f8f8f8, #f2f2f2);
+    /* border-top: 1px solid #ccc; */
+    /* border-bottom: 1px solid #ccc; */
+    /*width: 100%;*/
+    /*text-indent: 25px;*/
+    color: #707070;
+
+}
+.frame_table_list table.treetable tbody tr td{
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+    /*padding: 0;*/
+    border-bottom: 1px solid #F8F8F8;
+}
+/*一级菜单图标*/
+table.treetable tr.collapsed span.indenter a i{
+    color: #666;
+    font-size: 20px;
+}
+
+/*一级菜单图标*/
+table.treetable tr.expanded span.indenter a i{
+    color: #666;
+    font-size: 20px;
 }

@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>菜单配置</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.css"> -->
     <link rel="stylesheet" type="text/css" href="/static/common/js/dist/vue.css">
 	<link rel="stylesheet" type="text/css" href="/static/admin/css/content.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/frame.css">
     <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/screen.css" media="screen" > -->
-    <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.css">
+
     <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.theme.default.css"> -->
 </head>
 <body>
@@ -26,18 +27,34 @@
 </div>
 <div id="frame_content">
 <form name="commonSort" class="ajax-form" action="/intendant/Site/sortMenu" method="post">
-    <div class="frame_table_list" style="margin-top:150px;">
-        <table id="example-advanced">
+    <div class="frame_table_list" style="margin-top:65px;">
+        <table id="example-advanced" width="100%">
+            <colgroup>
+                <col width="240">
+                <col width="1140">
+
+            </colgroup>
+            <thead>
+              <tr>
+                <th align="left" style="text-indent:30px;">Name</th>
+                <th align="center">Kind</th>
+              </tr>
+            </thead>
             {{range .json}}
             <tr data-tt-id="{{.Id}}" {{if eq .Pid 0}}{{else}}data-tt-parent-id="{{.Pid}}"{{end}}>
-                <td><i class="iconfont" style="color:#666;font-size: 14px;">&#xe600;</i>&nbsp;&nbsp;{{.Name}}</td>
-                <td>{{.Url}}</td>
+                <td style="text-indent:25px;"><i class="iconfont" style="color:#666;font-size: 14px;">&#xe600;</i>&nbsp;&nbsp;{{.Name}}</td>
+                <td align="center">{{.Url}}</td>
             </tr>
             {{end}}
         </table>
     </div>
     <div class="frame_table_btn">
         <button class="btn ajax-sort" type="submit">排序</button>
+        <!-- <a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a> -->
+        <button class="btn ajax-sort" type="submit"
+        onclick="$('#example-advanced').treetable('expandAll'); return false;">展开</button>
+        <button class="btn ajax-sort" type="submit"
+        onclick="$('#example-advanced').treetable('collapseAll'); return false;">折叠</button>
     </div>
 </form>
 </div>
@@ -51,7 +68,12 @@
 <script src="/static/common/js/dist/jquery-1.12.3.min.js"></script>
 <script src="/static/common/js/treetable/jquery.treetable.js"></script>
 <script>
-$("#example-advanced").treetable({ expandable: true });
+var option = {
+                expandable: true,
+                expandLevel : 3,
+                column:0, //节点按钮在第几个栏位
+            }
+$("#example-advanced").treetable(option);
 
 // // Highlight selected row
 // $("#example-advanced tbody").on("mousedown", "tr", function() {
