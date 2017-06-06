@@ -203,13 +203,14 @@ td, th, div {
 
 /*数据表格*/
 #frame_toolbar{
-    height: 50px;
-    line-height: 50px;
-    position: fixed;top:50px;
+    /*height: 50px;
+    line-height: 50px;*/
+    position: fixed;top:37px;
     width: 100%;
     border-bottom: 1px solid #ddd;
     z-index: 9999;
     background: white;
+    padding: 10px 0;
 }
 #frame_toolbar ul{
     padding-left: 15px;
@@ -238,6 +239,9 @@ td, th, div {
     background: #337ab7;
     border-color: #2e6da4;
 }
+/*#frame_content{
+    z-index:9999;
+}*/
 /*按钮*/
 .frame_table_btn {
     position: fixed;

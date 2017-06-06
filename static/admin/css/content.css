@@ -42,11 +42,15 @@ font-size:16px;font-style:normal;
 }
 /*定义内部页面头部*/
 #frame_top{
+    position: fixed;top:0px;
 	height: 36px;
 	line-height: 36px;
 	text-indent: 25px;
 	box-shadow: inset 0px 0px 1px 0px #fff;
 	border-bottom: 1px solid #ddd;
+    background: white;
+    width: 100%;
+    z-index: 9999;
 }
 #frame_top i{
 	color:#707070;font-size: 12px;
