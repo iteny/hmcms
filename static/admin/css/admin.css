@@ -86,18 +86,19 @@ list-style-type: none;
 	text-align: center;
 	line-height: 40px;
 	color: #707070;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 #access li.action a{
-	box-shadow: inset 0px 0px 1px #fff;
+	box-shadow: inset 0px 0px 0px #fff;
 	color: white;
-    background: #3B97FA;
-
+    background: #3B91F9;
+	border-bottom: 1px solid #3B91F9;
 }
 #access li a:hover{
-	box-shadow: inset 0px 0px 1px #fff;
+	box-shadow: inset 0px 0px 0px #fff;
 	color: white;
-    background: #3B97FA;
+    background: #3B91F9;
+	border-bottom: 1px solid #3B91F9;
 }
 
 
@@ -138,7 +139,7 @@ list-style-type: none;
 #menu li {
     height: 38px;
     line-height: 38px;
-    /*text-align: center;*/
+    margin: 0 10px;
     overflow: hidden;
     text-indent: 25px;
 }
@@ -174,7 +175,6 @@ list-style-type: none;
 #menu h2  {
     height: 38px;
     line-height: 38px;
-    /*text-align: center;*/
     position: relative;
     overflow: hidden;
     text-indent: 15px;
@@ -184,6 +184,14 @@ list-style-type: none;
     /*background: #22282e;*/
     cursor: pointer;
 
+}
+#menu h2:hover{
+	color: white;
+    background: #3AC17E;
+	box-shadow: inset 0px 0px 1px #fff;
+}
+#menu h2:hover em{
+	color: white;
 }
 #menu h2.open .iconfont{}
 #menu h2 a{color:#707070;}
@@ -234,26 +242,29 @@ list-style-type: none;
 }
 .iteny .content{
     float: left;
-    border: 1px solid #37424f;
+    /*border: 1px solid #37424f;*/
+	/*border-radius: 4px;*/
     height:38px;
     line-height: 38px;
     padding: 0 15px;
-    background: #37424f;
+	background: #3AC17E;
+	box-shadow: inset 0px 0px 0px #fff;
+    /*background: #37424f;*/
     /*position: relative;*/
     text-align: center;
     font-size: 14px;
     font-weight: bold;
 }
-.jiantou {
+/*.jiantou {
     float: left;
-    border: 10px solid transparent;
+    border: 20px solid transparent;
     border-right: 10px solid #37424f;
     width: 0;
     height: 0px;
     position: relative;
-    top: 8px;
-    left: 0px;
-}
+    top: 0px;
+    left: 1px;
+}*/
 /*用户退出*/
 #nav_right{position: relative;padding: 0 15px;float:right;height:40px;line-height:40px;cursor: pointer;}
 #nav_right img{border-radius: 25px;display: block;position: relative;top:5px;}
@@ -264,7 +275,7 @@ list-style-type: none;
 #nav_right.item .cc li a{display: block;font-size: 12px;color: #0F0F0E;}
 #nav_right.item .cc li{height: 40px;text-align: center;}
 #nav_right.item .cc li a:hover{background: #3AC17E;color: white;}
-#nav_right.hover{background: #3B97FA;}
+#nav_right.hover{background: #3B91F9;}
 #nav_right.hover .uu{color: white;}
 #nav_right.hover .cc{display: block;}
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/

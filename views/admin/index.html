@@ -107,20 +107,20 @@ $('#hmLeft div.click').click(function(){
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;overflow-x:auto;overflow-y:auto;')
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:50px;overflow-x:auto;overflow-y:auto;')
 		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 51px');
-		$('#menu li').attr('style','text-indent: 18px;')
+		$('#menu li').attr('style','text-indent: 18px;margin:0;')
 	}else{
 		$(this).addClass("active");
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:none;overflow-x:auto;overflow-y:auto;')
 		$('#hmLeft').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;display:block;width:180px;overflow-x:auto;overflow-y:auto;')
 		$('#hmRight').attr('style','height:'+($(window).height()-$('#hmHead').height())+'px;margin-left: 181px');
-		$('#menu li').attr('style','text-indent: 25px;')
+		$('#menu li').attr('style','text-indent: 25px;margin:0 10px;')
 	}
 });
 $('#left-menu').on("mouseover mouseout",'a.west',function(event){
 	if(event.type == "mouseover"){
 		if($('div.click').attr('class') == 'click')
 		{
-			$(['<div class="iteny" style="position: absolute;left: 50px;top:'+$(this).offset().top+'px">',
+			$(['<div class="iteny" style="position: absolute;left: 48px;top:'+$(this).offset().top+'px">',
 				'<div class="jiantou"></div>',
 				'<div class="content">'+$(this).attr("data-name")+'</div>','</div>'].join('')).appendTo(document.body);
 		}
@@ -132,7 +132,7 @@ $('#left-menu').on("mouseover mouseout",'h2.west',function(event){
 	if(event.type == "mouseover"){
 		if($('div.click').attr('class') == 'click')
 		{
-			$(['<div class="iteny" style="position: absolute;left: 50px;top:'+$(this).offset().top+'px">',
+			$(['<div class="iteny" style="position: absolute;left: 48px;top:'+$(this).offset().top+'px">',
 				'<div class="jiantou"></div>',
 				'<div class="content">'+$(this).attr("data-name")+'</div>','</div>'].join('')).appendTo(document.body);
 		}
