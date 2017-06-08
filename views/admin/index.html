@@ -11,7 +11,7 @@
 	<!-- 头部 -->
 	<div id="hmHead">
 		<div class="logo">
-            <a href="/admin/index" title="管理中心" class="logo"><img src="/static/admin/img/hmcms.png" style="width:600px; height:40px;display:inline-block;"></a>
+            <a href="/admin/index" title="管理中心" class="logo"><img src="/static/admin/img/hmcms.png" style="width:600px; height:32px;display:inline-block;"></a>
         </div>
 		<div id="nav_left">
 			<ul id="access" class="children-tooltip">
@@ -25,7 +25,7 @@
 		</div>
 		<div id="nav_right" onmouseover="this.className='item hover'" onmouseout="this.className='item'">
             <div class="image">
-            <img width="24" height="24" src="/static/admin/img/admin.jpg" />
+            <img width="18" height="18" src="/static/admin/img/admin.jpg" />
             </div>
             <div class="uu">admin</div>
             <div class="cc">
@@ -153,14 +153,14 @@ $('#J_fullScreen').click(function (e) {
 	if($(this).hasClass("active")){
 		$(this).removeClass("active");
 		$("#hmRight").attr('style','height:100%;width:100%;position: fixed;top:0;left:0;margin-left:0;');
-		$('.options_refresh').attr('style','top:8px;');
-		$('.options').attr('style','top:8px;');
+		$('.options_refresh').attr('style','top:5px;');
+		$('.options').attr('style','top:5px;');
 	}else{
 		var hmhei = $('#hmLeft').width()+1;
 		$(this).addClass("active");
 		$("#hmRight").attr('style','margin-left:'+hmhei+'px;height:'+($(window).height()-$('#hmHead').height())+'px;');
-		$('.options_refresh').attr('style','top:48px;');
-		$('.options').attr('style','top:48px;');
+		$('.options_refresh').attr('style','top:38px;');
+		$('.options').attr('style','top:38px;');
 	}
 });
 var getLeftMenu = '/admin/getLeftMenu';

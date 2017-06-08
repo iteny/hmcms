@@ -1,6 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: 12px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif;
+    text-decoration: none;
+    font-style: normal;
+}
+body{background: white;}
+@font-face {font-family: 'iconfont';
+src: url('../font/iconfont.eot'); /* IE9*/
+src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+url('../font/iconfont.woff') format('woff'), /* chrome、firefox */
+url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+font-family:"iconfont" !important;
+font-size:16px;font-style:normal;
+-webkit-font-smoothing: antialiased;
+-webkit-text-stroke-width: 0.2px;
+-moz-osx-font-smoothing: grayscale;}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+    background-color: #E0E0E0;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+    background-color: #E0E0E0;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,.3);
+    background-color: #807F80;
+}
+/*定义内部页面头部*/
+#frame_top{
+    position: fixed;top:0px;
+	height: 32px;
+	line-height: 32px;
+	text-indent: 25px;
+	box-shadow: inset 0px 0px 1px 0px #fff;
+	border-bottom: 1px solid #ddd;
+    background: white;
+    width: 100%;
+    z-index: 9999;
+}
+#frame_top i{
+	color:#707070;font-size: 12px;
+}
 #frame_content{
-    /*padding:15px 15px 70px 15px;
-    margin-top: 92px;*/
+    padding: 20px;
 }
 .input, textarea, select {
     padding: 4px 4px;
@@ -93,14 +149,14 @@ td, th, div {
 
 }
 .frame_table_list tbody input{
-    height: 21px;
+    height: 18px;
     padding: 4px 8px;
     font-size: 100%;
-    line-height: 18px;
+    line-height: 15px;
     border: 1px solid #ccc;
     background-color: #fff;
     box-shadow: 2px 2px 2px #f0f0f0 inset;
-    /* border-radius: 1px; */
+     border-radius: 3px;
     vertical-align: middle;
     margin: 0;
     font-family: inherit;
@@ -115,7 +171,7 @@ td, th, div {
 }
 .frame_table_list a{
     color: white;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 .frame_table_list a:hover{
     /*text-decoration: underline;*/
@@ -220,17 +276,17 @@ td, th, div {
     padding-right: 10px;
 }
 #frame_toolbar ul li a{
-    height: 32px;
-    line-height: 32px;
+    height: 28px;
+    line-height: 28px;
     /*display: block;*/
     padding: 6px 12px;
     border: 1px solid #3B91F9;
-    border-radius: 4px;
+    border-radius: 3px;
     background: #3B91F9;
     box-shadow: inset 0px 0px 0px #fff;
     color:white;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+    /*font-weight: bold;*/
 }
 #frame_toolbar ul li a.active,#frame_toolbar ul li a.selected{
     background: #26A866;
@@ -268,7 +324,7 @@ a.btn{
     background: #3B91F9;
     color:white;
     font-size: 14px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     cursor: pointer;
 }
 a.btn:hover{
@@ -277,8 +333,8 @@ a.btn:hover{
 }
 
 button.btn{
-    height: 33px;
-    line-height: 33px;
+    height: 28px;
+    line-height: 24px;
     padding: 0px 12px;
     margin: 4px 0px;
     margin-right: 6px;
@@ -286,8 +342,8 @@ button.btn{
     border-radius: 3px;
     background: #3B91F9;
     color:white;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+    /*font-weight: bold;*/
     cursor: pointer;
 }
 button.btn:hover{

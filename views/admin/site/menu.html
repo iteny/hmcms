@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>菜单配置</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.css"> -->
     <link rel="stylesheet" type="text/css" href="/static/common/js/dist/vue.css">
-	<link rel="stylesheet" type="text/css" href="/static/admin/css/content.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/frame.css">
-    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/screen.css" media="screen" > -->
-
-    <!-- <link rel="stylesheet" type="text/css" href="/static/common/js/treetable/jquery.treetable.theme.default.css"> -->
 </head>
 <body>
 <div id="frame_top">
@@ -19,31 +14,42 @@
 </div>
 <div id="frame_toolbar">
     <ul>
-        <li><a class="active" href="/intendant/Site/menu"><i class="iconfont" style="color:white;font-size: 16px;">&#xe611;</i>&nbsp;&nbsp;菜单设置</a></li>
-        <li><a href="/intendant/Site/addEditMenu"><i class="iconfont" style="color:white;font-size: 16px;">&#xe610;</i>&nbsp;&nbsp;添加菜单</a></li>
-        <li><a id="export" class="bsn" title="菜单导出的位置是C盘/用户/当前系统用户/下载" href="/intendant/Site/exportMenu"><i class="iconfont" style="color:white;font-size: 16px;">&#xe611;</i>&nbsp;&nbsp;导出菜单</a></li>
-        <li><a id="import" href="/intendant/Site/importMenu"><i class="iconfont" style="color:white;font-size: 16px;">&#xe611;</i>&nbsp;&nbsp;导入菜单</a></li>
+        <li><a class="active" href="/intendant/Site/menu"><i class="iconfont" style="color:white;font-size: 14px;">&#xe611;</i>&nbsp;菜单设置</a></li>
+        <li><a href="/intendant/Site/addEditMenu"><i class="iconfont" style="color:white;font-size: 14px;">&#xe610;</i>&nbsp;&nbsp;添加菜单</a></li>
+        <li><a id="export" class="bsn" title="菜单导出的位置是C盘/用户/当前系统用户/下载" href="/intendant/Site/exportMenu"><i class="iconfont" style="color:white;font-size: 14px;">&#xe611;</i>&nbsp;导出菜单</a></li>
+        <li><a id="import" href="/intendant/Site/importMenu"><i class="iconfont" style="color:white;font-size: 14px;">&#xe611;</i>&nbsp;导入菜单</a></li>
     </ul>
 </div>
 <div id="frame_content">
-<form name="commonSort" class="ajax-form" action="/intendant/Site/sortMenu" method="post">
+<form name="commonSort" class="ajax-form" action="/admin/site/sortmenu" method="post">
     <div class="frame_table_list" style="margin-top:85px;">
         <table id="example-advanced" width="100%">
             <colgroup>
+                <col width="60">
+                <col width="60">
                 <col width="240">
-                <col width="1140">
-
+                <col width="180">
+                <col width="160">
             </colgroup>
             <thead>
               <tr>
-                <th align="left" style="text-indent:30px;">Name</th>
-                <th align="center">Kind</th>
+                <th align="center">排序</th>
+                <th align="center">ID</th>
+                <th align="left" style="text-indent:30px;">菜单名</th>
+                <th align="center">显示菜单</th>
+                <th align="center">Url地址</th>
+                <th align="center">管理操作</th>
+
               </tr>
             </thead>
             {{range .json}}
             <tr data-tt-id="{{.Id}}" {{if eq .Pid 0}}{{else}}data-tt-parent-id="{{.Pid}}"{{end}}>
+                <td align="center"><input style="text-align: center" name="sort[{{.Id}}]" type="text" size="3" value="{{.Sort}}" class="input"></td>
+                <td align="center">{{.Id}}</td>
                 <td style="text-indent:25px;"><i class="iconfont" style="color:#666;font-size: 14px;">&#xe600;</i>&nbsp;&nbsp;{{.Name}}</td>
+                <td align="center">{{if eq .Isshow 1}}<i class="iconfont" style="color:green;font-size: 16px;">&#xe60c;</i>{{else}}<i class="iconfont" style="color:red;font-size: 16px;">&#xe60a;</i>{{end}}</td>
                 <td align="center">{{.Url}}</td>
+                <td align="center"><a class="ajax-add blue" href="/Intendant/Site/addEditMenu/?pid={$menu['id']}" data-level="{{.Level}}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe610;</i>&nbsp;&nbsp;添加子菜单</a>&nbsp;&nbsp;&nbsp;<a class="ajax-edit blue" href="/Intendant/Site/addEditMenu/?id={$menu['id']}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe615;</i>&nbsp;&nbsp;修改</a>&nbsp;&nbsp;&nbsp;<a class="ajax-del red" data-title="{$menu['title']}" data-type="菜单" href="/Intendant/Site/delMenu" data-id="{$menu['id']}"><i class="iconfont" style="color:white;font-size: 16px;">&#xe614;</i>&nbsp;&nbsp;删除</a> </td>
             </tr>
             {{end}}
         </table>
@@ -59,53 +65,21 @@
 </form>
 </div>
 </body>
-<!-- <script src="/static/common/js/treetable/jquery.js"></script> -->
-<!-- <script src="/static/common/js/treetable/jquery.ui.core.js"></script>
-<script src="/static/common/js/treetable/jquery.ui.widget.js"></script>
-<script src="/static/common/js/treetable/jquery.ui.mouse.js"></script>
-<script src="/static/common/js/treetable/jquery.ui.draggable.js"></script>
-<script src="/static/common/js/treetable/jquery.ui.droppable.js"></script> -->
 <script src="/static/common/js/dist/jquery-1.12.3.min.js"></script>
 <script src="/static/common/js/treetable/jquery.treetable.js"></script>
+<script src="/static/common/js/layer/layer.js"></script>
+<script src="/static/admin/js/admin.common.js"></script>
+<script src="/static/admin/js/common.ajax.js"></script>
 <script>
 var option = {
-                expandable: true,
-                expandLevel : 3,
-                column:0, //节点按钮在第几个栏位
-            }
+    expandable: true,
+    expandLevel : 3,
+    column:2, //节点按钮在第几个栏位
+}
 $("#example-advanced").treetable(option);
-
-// // Highlight selected row
-// $("#example-advanced tbody").on("mousedown", "tr", function() {
-//   $(".selected").not(this).removeClass("selected");
-//   $(this).toggleClass("selected");
-// });
-//
-// // Drag & Drop Example Code
-// $("#example-advanced .file, #example-advanced .folder").draggable({
-//   helper: "clone",
-//   opacity: .75,
-//   refreshPositions: true,
-//   revert: "invalid",
-//   revertDuration: 300,
-//   scroll: true
-// });
-//
-// $("#example-advanced .folder").each(function() {
-//   $(this).parents("#example-advanced tr").droppable({
-//     accept: ".file, .folder",
-//     drop: function(e, ui) {
-//       var droppedEl = ui.draggable.parents("tr");
-//       $("#example-advanced").treetable("move", droppedEl.data("ttId"), $(this).data("ttId"));
-//     },
-//     hoverClass: "accept",
-//     over: function(e, ui) {
-//       var droppedEl = ui.draggable.parents("tr");
-//       if(this != droppedEl[0] && !$(this).is(".expanded")) {
-//         $("#example-advanced").treetable("expandNode", $(this).data("ttId"));
-//       }
-//     }
-//   });
-// });
+$('.ajax-add').on('click', function (e) {
+    var data = $(this).attr('data-level');
+    if(data >= 3){e.preventDefault();admin.alert('提示信息','对不起，菜单最多4级！',2,'3000');}
+});
 </script>
 </html>

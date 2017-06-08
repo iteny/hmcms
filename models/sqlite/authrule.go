@@ -15,6 +15,7 @@ type AuthRule struct {
 	Isshow   int         `json:"isshow" xorm:"integer(1) notnull default 0 index"`
 	Sort     int         `json:"sort" xorm:"integer(6) notnull default 0 index"`
 	Icon     string      `json:"icon" xorm:"text(50) notnull default ''"`
+	Level    int         `json:"level" xorm:"integer(1) notnull default 1 index"`
 	Children []*AuthRule `json:"children"`
 }
 
