@@ -44,7 +44,7 @@
             </thead>
             {{range .json}}
             <tr data-tt-id="{{.Id}}" {{if eq .Pid 0}}{{else}}data-tt-parent-id="{{.Pid}}"{{end}}>
-                <td align="center"><input style="text-align: center" name="sort[{{.Id}}]" type="text" size="3" value="{{.Sort}}" class="input"></td>
+                <td align="center"><input style="text-align: center" name="{{.Id}}" type="text" size="3" value="{{.Sort}}" class="input"></td>
                 <td align="center">{{.Id}}</td>
                 <td style="text-indent:25px;"><i class="iconfont" style="color:#666;font-size: 14px;">&#xe600;</i>&nbsp;&nbsp;{{.Name}}</td>
                 <td align="center">{{if eq .Isshow 1}}<i class="iconfont" style="color:green;font-size: 16px;">&#xe60c;</i>{{else}}<i class="iconfont" style="color:red;font-size: 16px;">&#xe60a;</i>{{end}}</td>
@@ -57,9 +57,9 @@
     <div class="frame_table_btn">
         <button class="btn ajax-sort" type="submit">排序</button>
         <!-- <a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a> -->
-        <button class="btn ajax-sort" type="submit"
+        <button class="btn" type="submit"
         onclick="$('#example-advanced').treetable('expandAll'); return false;">展开</button>
-        <button class="btn ajax-sort" type="submit"
+        <button class="btn" type="submit"
         onclick="$('#example-advanced').treetable('collapseAll'); return false;">折叠</button>
     </div>
 </form>

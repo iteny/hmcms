@@ -12,12 +12,23 @@ $(function(){
             return false;
         }
         btn.attr("disabledSubmit",true);
-        var param = form.serialize();
+        var param = {};
+        var sorts = form.serializeArray();
+        $.each(sorts, function() {
+           if (param[this.name] !== undefined) {
+               if (!param[this.name].push) {
+                   param[this.name] = [param[this.name]];
+               }
+               param[this.name].push(this.value || '');
+           } else {
+               param[this.name] = this.value || '';
+           }
+       });
         $.ajax({
             url: form.attr('action'),
             dataType:'json',
             type:'POST',
-            data:param,
+            data:JSON.stringify(param),
             beforeSend: function(){
                 myload = layer.load(0,{time:3*1000});
             },
@@ -127,12 +138,22 @@ $(function(){
         $(".ids").prop("checked", this.checked);
     });
     //悬停提示
-    $('.bsn').poshytip({
-        className: 'tip-darkgray',
-        alignTo: 'target',
-        alignX: 'right',
-        alignY: 'center',
-        offsetX: 5,
-        showTimeout: 1100
-    });
+    // $('.bsn').poshytip({
+    //     className: 'tip-darkgray',
+    //     alignTo: 'target',
+    //     alignX: 'right',
+    //     alignY: 'center',
+    //     offsetX: 5,
+    //     showTimeout: 1100
+    // });
+    function GetJsonData() {
+        var json = {
+            "classid": 2,
+            "name": $("#tb_name").val(),
+            "zlclass": "测试类型1,测试类型2,测试类型3",
+            "pname": $("#tb_contact_people").val(),
+            "tel": $("#tb_contact_phone").val()
+        };
+        return json;
+    }
 });
